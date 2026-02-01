@@ -1,0 +1,47 @@
+{
+  "name": "ngx-chess-board",
+  "version": "3.0.0",
+  "peerDependencies": {
+    "@angular/common": "^17.0.7",
+    "@angular/core": "^17.0.7",
+    "@angular/cdk": "^17.0.7"
+  },
+  "description": "Chess game component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grzegorz103/ngx-chess-board.git"
+  },
+  "homepage": "https://github.com/grzegorz103/ngx-chess-board",
+  "keywords": [
+    "angular",
+    "chess",
+    "game",
+    "ng",
+    "ngx",
+    "player",
+    "multiplayer",
+    "board",
+    "fen"
+  ],
+  "license": "MIT",
+  "module": "fesm2022/ngx-chess-board.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2022": "./esm2022/ngx-chess-board.mjs",
+      "esm": "./esm2022/ngx-chess-board.mjs",
+      "default": "./fesm2022/ngx-chess-board.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
+}

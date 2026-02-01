@@ -1,0 +1,1 @@
+{"version":3,"file":"ngx-chess-board.module.d.ts","sourceRoot":"","sources":["../../../projects/ngx-chess-board/src/lib/ngx-chess-board.module.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,mBAAmB,EAAY,MAAM,eAAe,CAAC;;;;;;AAK9D,qBAKa,mBAAmB;IAC5B,MAAM,CAAC,OAAO,IAAI,mBAAmB,CAAC,mBAAmB,CAAC;yCADjD,mBAAmB;0CAAnB,mBAAmB;0CAAnB,mBAAmB;CAO/B"}

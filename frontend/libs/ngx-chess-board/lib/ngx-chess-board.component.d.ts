@@ -1,0 +1,78 @@
+import { CdkDragEnd, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
+import { AfterViewInit, ElementRef, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AbstractEngineFacade } from './engine/abstract-engine-facade';
+import { BoardLoader } from './engine/board-state-provider/board-loader/board-loader';
+import { MoveChange } from './engine/outputs/move-change/move-change';
+import { HistoryMove } from './history-move-provider/history-move';
+import { Board } from './models/board';
+import { Piece } from './models/pieces/piece';
+import { NgxChessBoardView } from './ngx-chess-board-view';
+import { PiecePromotionModalComponent } from './piece-promotion/piece-promotion-modal/piece-promotion-modal.component';
+import { NgxChessBoardService } from './service/ngx-chess-board.service';
+import { PieceIconInput } from './utils/inputs/piece-icon-input';
+import { PieceIconInputManager } from './utils/inputs/piece-icon-input-manager';
+import { ColorInput, PieceTypeInput } from './utils/inputs/piece-type-input';
+import * as i0 from "@angular/core";
+export declare class NgxChessBoardComponent implements OnInit, OnChanges, NgxChessBoardView, AfterViewInit {
+    private ngxChessBoardService;
+    darkTileColor: string;
+    lightTileColor: string;
+    showCoords: boolean;
+    sourcePointColor: string;
+    destinationPointColor: string;
+    legalMovesPointColor: string;
+    showLastMove: boolean;
+    showLegalMoves: boolean;
+    showActivePiece: boolean;
+    showPossibleCaptures: boolean;
+    /**
+     * Enabling free mode removes turn-based restriction and allows to move any piece freely!
+     */
+    moveChange: EventEmitter<MoveChange>;
+    checkmate: EventEmitter<void>;
+    stalemate: EventEmitter<void>;
+    boardRef: ElementRef;
+    modal: PiecePromotionModalComponent;
+    pieceSize: number;
+    selected: boolean;
+    boardLoader: BoardLoader;
+    pieceIconManager: PieceIconInputManager;
+    isDragging: boolean;
+    startTransition: string;
+    engineFacade: AbstractEngineFacade;
+    constructor(ngxChessBoardService: NgxChessBoardService);
+    set size(size: number);
+    set freeMode(freeMode: boolean);
+    set dragDisabled(dragDisabled: boolean);
+    set drawDisabled(drawDisabled: boolean);
+    set pieceIcons(pieceIcons: PieceIconInput);
+    set lightDisabled(lightDisabled: boolean);
+    set darkDisabled(darkDisabled: boolean);
+    onRightClick(event: MouseEvent): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    onMouseUp(event: MouseEvent): void;
+    reverse(): void;
+    updateBoard(board: Board): void;
+    setFEN(fen: string): void;
+    setPGN(pgn: string): void;
+    getFEN(): string;
+    dragEnded(event: CdkDragEnd): void;
+    dragStart(event: CdkDragStart): void;
+    onMouseDown(event: MouseEvent): void;
+    getClickPoint(event: any): import("./models/pieces/point").Point;
+    private calculatePieceSize;
+    getCustomPieceIcons(piece: Piece): any;
+    move(coords: string): void;
+    getMoveHistory(): HistoryMove[];
+    reset(): void;
+    undo(): void;
+    addPiece(pieceTypeInput: PieceTypeInput, colorInput: ColorInput, coords: string): void;
+    getPGN(): string;
+    dragMoved($event: CdkDragMove<any>): void;
+    getTileBackgroundColor(i: any, j: any): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<NgxChessBoardComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NgxChessBoardComponent, "ngx-chess-board", never, { "darkTileColor": { "alias": "darkTileColor"; "required": false; }; "lightTileColor": { "alias": "lightTileColor"; "required": false; }; "showCoords": { "alias": "showCoords"; "required": false; }; "sourcePointColor": { "alias": "sourcePointColor"; "required": false; }; "destinationPointColor": { "alias": "destinationPointColor"; "required": false; }; "legalMovesPointColor": { "alias": "legalMovesPointColor"; "required": false; }; "showLastMove": { "alias": "showLastMove"; "required": false; }; "showLegalMoves": { "alias": "showLegalMoves"; "required": false; }; "showActivePiece": { "alias": "showActivePiece"; "required": false; }; "showPossibleCaptures": { "alias": "showPossibleCaptures"; "required": false; }; "size": { "alias": "size"; "required": false; }; "freeMode": { "alias": "freeMode"; "required": false; }; "dragDisabled": { "alias": "dragDisabled"; "required": false; }; "drawDisabled": { "alias": "drawDisabled"; "required": false; }; "pieceIcons": { "alias": "pieceIcons"; "required": false; }; "lightDisabled": { "alias": "lightDisabled"; "required": false; }; "darkDisabled": { "alias": "darkDisabled"; "required": false; }; }, { "moveChange": "moveChange"; "checkmate": "checkmate"; "stalemate": "stalemate"; }, never, never, false, never>;
+}
+//# sourceMappingURL=ngx-chess-board.component.d.ts.map

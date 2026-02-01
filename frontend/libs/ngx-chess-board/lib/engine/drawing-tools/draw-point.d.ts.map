@@ -1,0 +1,1 @@
+{"version":3,"file":"draw-point.d.ts","sourceRoot":"","sources":["../../../../../projects/ngx-chess-board/src/lib/engine/drawing-tools/draw-point.ts"],"names":[],"mappings":"AAAA,qBAAa,SAAS;IAClB,CAAC,EAAE,MAAM,CAAC;IACV,CAAC,EAAE,MAAM,CAAC;IACV,KAAK,EAAE,MAAM,CAAC;gBAEF,CAAC,EAAE,MAAM,EAAE,CAAC,EAAE,MAAM,EAAE,KAAK,EAAE,MAAM;IAM/C,OAAO,CAAC,IAAI,EAAE,SAAS;CAG1B"}

@@ -1,0 +1,36 @@
+[project]
+name = "chess-agent-backend"
+version = "0.1.0"
+description = "FastAPI backend for ChatAgent (RAG, LLM orchestration, and chess services)"
+authors = [
+    { name = "David Worsley-Tonks", email = "hello@sparkup.dev" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pymilvus",
+    "requests",    
+    "python-chess",
+    "stockfish",
+    "sentence-transformers",
+    "numpy",
+    "google-api-python-client"
+]
+
+[tool.uv]
+# Optional: if you’re using `uv` as your dependency manager
+dev-dependencies = [
+    "pytest",
+    "httpx",
+    "black",
+    "ruff"
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }

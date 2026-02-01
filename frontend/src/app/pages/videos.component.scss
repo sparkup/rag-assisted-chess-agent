@@ -1,0 +1,95 @@
+/*
+  Harmonization with other pages:
+  Minimal custom CSS, mostly relying on Bootstrap
+*/
+
+.video-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+/* Clickable button for the video thumbnail */
+.thumb-btn {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+/* Disabled state: no interaction */
+.thumb-btn:disabled {
+    cursor: default;
+    opacity: 0.9;
+}
+
+/* Video thumbnail */
+.thumb {
+    width: 150px;
+    max-width: 40vw;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.1);
+}
+
+/* Button used as the video title */
+.video-title-btn {
+    background: transparent;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Hover effect on the title */
+.video-title-btn:hover {
+    text-decoration: underline;
+}
+
+/* Disabled state of the title */
+.video-title-btn:disabled {
+    cursor: default;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+/* Mobile adaptation */
+@media (max-width: 640px) {
+    .video-row {
+        flex-direction: column;
+    }
+
+    .thumb {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Semi-transparent background behind the modal */
+.modal-backdrop-custom {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    z-index: 1040;
+}
+
+/* Main container of the modal */
+.modal-custom {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    z-index: 1050;
+}
+
+/* Modal content card */
+.modal-custom-card {
+    width: min(980px, 96vw);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 18px;
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.2);
+    padding: 16px;
+}

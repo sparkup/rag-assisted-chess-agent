@@ -1,0 +1,160 @@
+<div class="page">
+    <div class="search-panel">
+        <h2 class="mb-2">YouTube videos</h2>
+        <p class="text-muted-72 mb-2">
+            Search curated YouTube videos related to a chess opening (e.g.
+            Italian Game, Sicilian Defense).
+        </p>
+        <p class="text-muted-72 fst-italic mb-4">
+            <strong>Technical note:</strong> this demo calls a backend API that
+            uses the YouTube Data API to fetch relevant videos for the requested
+            opening and returns structured metadata (title, channel, thumbnail,
+            and an optional embed URL).
+        </p>
+
+        <div class="row g-3 align-items-start">
+            <div class="col-12 col-md-9">
+                <label class="form-label fw-semibold">Opening</label>
+                <input
+                    class="form-control"
+                    [(ngModel)]="opening"
+                    placeholder="Type an opening name..."
+                />
+                <div class="form-text text-muted-72">
+                    Examples: <strong>Italian Game</strong>,
+                    <strong>Sicilian Defense</strong>,
+                    <strong>English Opening</strong>,
+                    <strong>Counterattack</strong>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <label class="form-label fw-semibold">Max results</label>
+                <input
+                    class="form-control"
+                    type="number"
+                    min="1"
+                    max="20"
+                    [(ngModel)]="maxResults"
+                />
+            </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-default px-4" (click)="load()">
+                    <span *ngIf="!loading">Search</span>
+                    <span *ngIf="loading">Loading…</span>
+                </button>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <h2 class="h4 fw-semibold mb-3">Results</h2>
+
+        <div *ngIf="!loading && !hasSearched" class="text-muted-72">
+            No results yet. Enter an opening above and click
+            <strong>Search</strong>.
+        </div>
+
+        <div
+            *ngIf="!loading && hasSearched && (!videos || videos.length === 0)"
+            class="text-muted-72"
+        >
+            No results found. Try a different query, such as
+            <strong>Italian Game</strong>, <strong>Sicilian Defense</strong> or
+            <strong>English Opening</strong>.
+        </div>
+
+        <div *ngIf="videos?.length" class="d-flex flex-column">
+            <div *ngFor="let v of videos; let i = index">
+                <div class="video-row">
+                    <button
+                        type="button"
+                        class="thumb-btn"
+                        (click)="openVideo(v)"
+                        [disabled]="!v?.embed_url"
+                        [title]="
+                            v?.embed_url ? 'Open video' : 'No embed available'
+                        "
+                    >
+                        <img
+                            class="thumb"
+                            [src]="v.thumbnail"
+                            [alt]="v.title"
+                        />
+                    </button>
+
+                    <div class="flex-grow-1">
+                        <div
+                            class="d-flex align-items-start justify-content-between gap-3"
+                        >
+                            <div>
+                                <button
+                                    type="button"
+                                    class="video-title-btn h5 fw-semibold text-decoration-none d-inline-block mb-1 p-0"
+                                    (click)="openVideo(v)"
+                                    [disabled]="!v?.embed_url && !v?.url"
+                                    [title]="
+                                        v?.embed_url
+                                            ? 'Open video'
+                                            : v?.url
+                                              ? 'Open on YouTube'
+                                              : 'Unavailable'
+                                    "
+                                >
+                                    {{ v.title }}
+                                </button>
+                                <div class="text-muted-72 small mb-2">
+                                    {{ v.channel }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-muted-72 mb-0" *ngIf="v.description">
+                            {{ v.description }}
+                        </p>
+                    </div>
+                </div>
+
+                <hr class="my-3" *ngIf="i < videos.length - 1" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal (simple, no Bootstrap JS dependency) -->
+    <div
+        *ngIf="selected"
+        class="modal-backdrop-custom"
+        (click)="closeModal()"
+    ></div>
+    <div *ngIf="selected" class="modal-custom" role="dialog" aria-modal="true">
+        <div class="modal-custom-card">
+            <div
+                class="d-flex align-items-start justify-content-between gap-3 mb-2"
+            >
+                <div>
+                    <div class="h5 fw-semibold mb-1">{{ selected.title }}</div>
+                    <div class="text-muted-72 small">
+                        {{ selected.channel }}
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-default btn-sm"
+                    (click)="closeModal()"
+                >
+                    Close
+                </button>
+            </div>
+
+            <div class="ratio ratio-16x9">
+                <iframe
+                    *ngIf="selected.embed_url"
+                    [src]="selected.embed_url | safeUrl"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+</div>

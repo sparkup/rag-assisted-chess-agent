@@ -1,0 +1,1 @@
+{"version":3,"file":"default-color-processor.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/drawing-tools/colors/default-color-processor.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,mBAAmB,CAAC;AAEnD,qBAAa,qBAAsB,YAAW,cAAc;IAExD,OAAO,CAAC,IAAI,EAAE,GAAG,EAAE,KAAK,EAAE,GAAG,EAAE,GAAG,EAAE,GAAG,GAAG,MAAM;CAgBnD"}
