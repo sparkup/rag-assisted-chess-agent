@@ -149,3 +149,9 @@ make init-frontend
 - Autonomous LLM‑based reasoning **not yet implemented**
 
 This repository intentionally represents an **early but solid foundation**, designed to grow over time as more advanced agent capabilities are introduced.
+
+## License
+
+MIT License
+
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software, provided that the original copyright notice and license terms are included.
