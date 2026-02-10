@@ -1,0 +1,1 @@
+{"version":3,"file":"drag-end-processor.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/drag/end/drag-end-processor.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,wBAAwB,CAAC;AAEpD,MAAM,WAAW,gBAAgB;IAE7B,SAAS,EAAE,CAAC,KAAK,EAAE,UAAU,EAAE,SAAS,EAAE,OAAO,EAAE,UAAU,EAAE,MAAM,KAAK,IAAI,CAAC;CAElF"}

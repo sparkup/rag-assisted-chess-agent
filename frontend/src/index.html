@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+    <head>
+        <base href="/" />
+        <meta charset="utf-8" />
+        <title>Chess Agent</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script>
+            (function () {
+                var host = window.location.hostname || "";
+                var isLocal =
+                    host.endsWith(".local") ||
+                    host === "localhost" ||
+                    host === "127.0.0.1";
+                var scheme = window.location.protocol === "https:" ? "https" : "http";
+                var base = isLocal
+                    ? scheme + "://static.sparkup.local"
+                    : "https://static.sparkup.dev";
+
+                window.__SPARKUP_STATIC_BASE__ = base;
+
+                var favicons = [
+                    { rel: "icon", sizes: "32x32", href: base + "/favicon-32x32.png" },
+                    { rel: "icon", sizes: "16x16", href: base + "/favicon-16x16.png" },
+                    { rel: "icon", type: "image/x-icon", href: base + "/favicon.ico" },
+                    { rel: "icon", type: "image/png", href: base + "/favicon.png" }
+                ];
+
+                favicons.forEach(function (icon) {
+                    var link = document.createElement("link");
+                    link.rel = icon.rel;
+                    if (icon.sizes) link.sizes = icon.sizes;
+                    if (icon.type) link.type = icon.type;
+                    link.href = icon.href;
+                    document.head.appendChild(link);
+                });
+
+                var bootstrap = document.createElement("link");
+                bootstrap.rel = "stylesheet";
+                bootstrap.href = base + "/css/bootstrap.min.css";
+                document.head.appendChild(bootstrap);
+
+                var sparkup = document.createElement("link");
+                sparkup.rel = "stylesheet";
+                sparkup.href = base + "/css/sparkup-ui.css";
+                document.head.appendChild(sparkup);
+
+                var demo = document.createElement("link");
+                demo.rel = "stylesheet";
+                demo.href = base + "/css/sparkup-demo.css";
+                document.head.appendChild(demo);
+
+
+                var bootstrapJs = document.createElement("script");
+                bootstrapJs.src = base + "/js/bootstrap.bundle.min.js";
+                bootstrapJs.defer = true;
+                document.head.appendChild(bootstrapJs);
+            })();
+        </script>
+    </head>
+    <body>
+        <app-root></app-root>
+        <script>
+            (function () {
+                var base = window.__SPARKUP_STATIC_BASE__;
+                if (!base) return;
+                var host = window.location.hostname || "";
+                var isLocal =
+                    host.endsWith(".local") ||
+                    host === "localhost" ||
+                    host === "127.0.0.1";
+                var scheme = window.location.protocol === "https:" ? "https" : "http";
+
+                function setLogo() {
+                    var logo = document.querySelector("img[data-sparkup-logo]");
+                    var link = document.querySelector("[data-sparkup-portfolio]");
+                    var github = document.querySelector("img[data-sparkup-github]");
+                    if (logo) {
+                        logo.src = base + "/images/sparkup.svg";
+                        if (github) {
+                            github.src = base + "/icons/github.svg";
+                        }
+                        if (link) {
+                            link.href = isLocal
+                                ? scheme + "://www.sparkup.local"
+                                : "https://www.sparkup.dev";
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+
+                if (setLogo()) return;
+
+                var observer = new MutationObserver(function () {
+                    if (setLogo()) {
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, { childList: true, subtree: true });
+            })();
+        </script>
+    </body>
+</html>

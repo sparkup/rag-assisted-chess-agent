@@ -1,0 +1,71 @@
+:host {
+    display: block;
+}
+
+ngx-chess-board {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chess-board-shell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chess-highlight {
+    position: absolute;
+    border-radius: 8px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.chess-highlight--from {
+    background: linear-gradient(
+        135deg,
+        rgba(124, 92, 255, 0.9),
+        rgba(99, 102, 241, 0.7)
+    );
+    box-shadow: inset 0 0 0 1px rgba(124, 92, 255, 0.35);
+}
+
+.chess-highlight--to {
+    background: linear-gradient(
+        135deg,
+        rgba(34, 167, 240, 0.9),
+        rgba(34, 167, 240, 0.65)
+    );
+    box-shadow: inset 0 0 0 1px rgba(34, 167, 240, 0.35);
+}
+
+::ng-deep ngx-chess-board .current-selection {
+    background-color: #7c5cff !important;
+}
+
+::ng-deep ngx-chess-board .possible-point {
+    background: radial-gradient(#22a7f0 15%, transparent 20%) !important;
+}
+
+::ng-deep ngx-chess-board .possible-capture {
+    background: radial-gradient(transparent 0%, transparent 80%, #22a7f0 80%) !important;
+}
+
+::ng-deep ngx-chess-board svg circle {
+    stroke: #22a7f0 !important;
+}
+
+@media (max-width: 500px) {
+    ngx-chess-board {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .description-block {
+        margin-top: 430px;
+    }
+}

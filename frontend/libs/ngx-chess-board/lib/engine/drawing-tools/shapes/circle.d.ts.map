@@ -1,0 +1,1 @@
+{"version":3,"file":"circle.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/drawing-tools/shapes/circle.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,eAAe,CAAC;AAE1C,qBAAa,MAAM;IACf,SAAS,EAAE,SAAS,CAAC;IAErB,OAAO,CAAC,MAAM,EAAE,MAAM;CAGzB"}

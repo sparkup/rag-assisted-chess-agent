@@ -1,0 +1,97 @@
+<div class="mb-4">
+    <h2 class="mb-2">Search chess openings</h2>
+
+    <p class="text-muted-72 mb-2">
+        Find an opening by name and retrieve the closest matches from the
+        knowledge base.
+    </p>
+
+    <p class="small fst-italic text-muted-72 mb-0">
+        <strong>Technical note:</strong> this demo performs a vector search (RAG
+        retriever step) using embeddings (<code>all-MiniLM-L6-v2</code>) and a
+        Milvus vector database, then returns the Top-K closest chunks.
+    </p>
+</div>
+
+<div class="search-panel">
+    <form (ngSubmit)="search()">
+        <div class="row g-3 align-items-start">
+            <div class="col-12 col-md-9">
+                <label for="opening" class="form-label fw-semibold mb-2">
+                    Opening
+                </label>
+                <input
+                    id="opening"
+                    name="opening"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="opening"
+                    placeholder="Type an opening name…"
+                    required
+                />
+                <div class="form-text text-muted-72 mt-2">
+                    Examples:
+                    <span class="fw-semibold">English Opening</span>,
+                    <span class="fw-semibold">Sicilian Defense</span>,
+                    <span class="fw-semibold">Italian Game</span>,
+                    <span class="fw-semibold">Counterattack</span>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3">
+                <label for="topK" class="form-label fw-semibold mb-2">
+                    Top K
+                </label>
+                <input
+                    id="topK"
+                    name="topK"
+                    class="form-control"
+                    type="number"
+                    [(ngModel)]="topK"
+                    min="1"
+                    max="20"
+                    step="1"
+                    required
+                />
+            </div>
+
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-default px-4">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<hr class="my-4" />
+
+<div class="mt-2" *ngIf="results?.length">
+    <h4 class="mb-3">Opening results</h4>
+
+    <div class="d-flex flex-column">
+        <ng-container *ngFor="let r of results">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <div class="fw-bold fs-5">
+                    {{ r.opening || "Match" }}
+                </div>
+                <div class="score-pill" *ngIf="r.score !== undefined">
+                    Score: {{ r.score | number: "1.3-3" }}
+                </div>
+            </div>
+
+            <div class="text-muted-72 mb-3" *ngIf="r.text">
+                {{ r.text }}
+            </div>
+
+            <hr class="my-3" />
+        </ng-container>
+    </div>
+</div>
+
+<div class="mt-4 text-muted-72" *ngIf="results && results.length === 0">
+    No results found. Try a different query, such as
+    <span class="fw-semibold">English Opening</span>,
+    <span class="fw-semibold">Sicilian Defense</span> or
+    <span class="fw-semibold">Counterattack</span>.
+</div>

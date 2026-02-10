@@ -1,0 +1,1 @@
+{"version":3,"file":"arrow.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/drawing-tools/shapes/arrow.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,eAAe,CAAC;AAE1C,qBAAa,KAAK;IACd,KAAK,EAAE,SAAS,CAAC;IACjB,GAAG,EAAE,SAAS,CAAC;IAEf,OAAO,CAAC,KAAK,EAAE,KAAK;CAGvB"}

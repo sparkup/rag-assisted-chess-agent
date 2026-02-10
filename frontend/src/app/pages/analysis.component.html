@@ -1,0 +1,119 @@
+<div class="mb-4">
+    <h2 class="mb-2">Position analysis</h2>
+
+    <p class="text-muted-72 mb-2">
+        Paste a FEN position to either get a suggested move or evaluate the
+        position with a chess engine.
+    </p>
+    <p class="text-muted-72 mb-2">
+        <strong>FEN</strong> (Forsyth-Edwards Notation) is a standard string
+        that encodes a full chess position: pieces, side to move, castling,
+        en passant, and move counters.
+    </p>
+
+    <p class="small fst-italic text-muted-72 mb-0">
+        <strong>Technical note:</strong> this demo calls a backend API that
+        validates the FEN and queries a Stockfish-based engine. The
+        <em>suggest move</em> endpoint returns a playable engine suggestion (not
+        necessarily the absolute best line), while <em>evaluate</em> returns an
+        evaluation of the current position.
+    </p>
+</div>
+
+<hr />
+
+<!-- Suggest a move -->
+<div class="search-panel mb-4">
+    <div class="mb-2">
+        <h4 class="mb-1">Suggest a move</h4>
+        <p class="text-muted-72 mb-0">
+            Provide a position in FEN format — the engine suggests a reasonable
+            next move for the side to play.
+        </p>
+    </div>
+
+    <div class="mt-3">
+        <label for="fenSuggest" class="form-label fw-semibold mb-2">
+            FEN position
+        </label>
+        <input
+            id="fenSuggest"
+            class="form-control"
+            type="text"
+            [(ngModel)]="fen"
+            placeholder="Paste a FEN position…"
+        />
+
+        <div class="form-text text-muted-72 mt-2">
+            Examples:
+            <br />
+            <span class="fw-semibold">
+                rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1
+            </span>
+            <br />
+            <span class="fw-semibold"> 8/8/8/4p1K1/2k1P3/8/8/8 b - - 0 1 </span>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-default px-4" (click)="suggest()">
+                Suggest
+            </button>
+        </div>
+
+        <pre
+            *ngIf="suggestion"
+            class="mt-3 mb-0 p-3 border rounded bg-white bg-opacity-75 small"
+            >{{ suggestion | json }}</pre
+        >
+    </div>
+</div>
+
+<hr />
+
+<!-- Evaluate a position -->
+<div class="search-panel">
+    <div class="mb-2">
+        <h4 class="mb-1">Evaluate a position</h4>
+        <p class="text-muted-72 mb-0">
+            Get an engine evaluation for a given FEN position (useful to compare
+            candidate moves or assess advantage).
+        </p>
+    </div>
+
+    <div class="mt-3">
+        <label for="fenEval" class="form-label fw-semibold mb-2">
+            FEN position
+        </label>
+        <input
+            id="fenEval"
+            class="form-control"
+            type="text"
+            [(ngModel)]="fenEval"
+            placeholder="Paste a FEN position…"
+        />
+
+        <div class="form-text text-muted-72 mt-2">
+            Examples:
+            <br />
+            <span class="fw-semibold">
+                r1bqkbnr/pppppppp/2n5/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 1 2
+            </span>
+            <br />
+            <span class="fw-semibold">
+                4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1
+            </span>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-default px-4" (click)="evaluate()">
+                Evaluate
+            </button>
+        </div>
+
+        <pre
+            *ngIf="evaluation"
+            class="mt-3 mb-0 p-3 border rounded bg-white bg-opacity-75 small"
+            >{{ evaluation | json }}</pre
+        >
+    </div>
+</div>

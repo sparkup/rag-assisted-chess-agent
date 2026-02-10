@@ -1,0 +1,16 @@
+/*
+ * Public API Surface of ngx-chess-board
+ */
+export * from './lib/ngx-chess-board.module';
+export * from './lib/history-move-provider/history-move';
+export * from './lib/utils/inputs/piece-icon-input';
+export * from './lib/ngx-chess-board.component';
+export * from './lib/piece-promotion/piece-promotion-modal/piece-promotion-modal.component';
+export * from './lib/ngx-chess-board-view';
+export * from './lib/service/ngx-chess-board.service';
+export * from './lib/service/ngx-chess-board.service';
+export * from './lib/engine/outputs/move-change/move-change';
+/*
+ * Public API Surface of im-grid
+ */
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1jaGVzcy1ib2FyZC9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsOEJBQThCLENBQUM7QUFDN0MsY0FBYywwQ0FBMEMsQ0FBQztBQUN6RCxjQUFjLHFDQUFxQyxDQUFDO0FBRXBELGNBQWMsaUNBQWlDLENBQUM7QUFDaEQsY0FBYyw2RUFBNkUsQ0FBQztBQUU1RixjQUFjLDRCQUE0QixDQUFDO0FBQzNDLGNBQWMsdUNBQXVDLENBQUM7QUFDdEQsY0FBYyx1Q0FBdUMsQ0FBQztBQUN0RCxjQUFjLDhDQUE4QyxDQUFBO0FBRTVEOztHQUVHIiwic291cmNlc0NvbnRlbnQiOlsiLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBuZ3gtY2hlc3MtYm9hcmRcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtY2hlc3MtYm9hcmQubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2hpc3RvcnktbW92ZS1wcm92aWRlci9oaXN0b3J5LW1vdmUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvdXRpbHMvaW5wdXRzL3BpZWNlLWljb24taW5wdXQnO1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtY2hlc3MtYm9hcmQuY29tcG9uZW50JztcbmV4cG9ydCAqIGZyb20gJy4vbGliL3BpZWNlLXByb21vdGlvbi9waWVjZS1wcm9tb3Rpb24tbW9kYWwvcGllY2UtcHJvbW90aW9uLW1vZGFsLmNvbXBvbmVudCc7XG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL25neC1jaGVzcy1ib2FyZC12aWV3JztcbmV4cG9ydCAqIGZyb20gJy4vbGliL3NlcnZpY2Uvbmd4LWNoZXNzLWJvYXJkLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvc2VydmljZS9uZ3gtY2hlc3MtYm9hcmQuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9lbmdpbmUvb3V0cHV0cy9tb3ZlLWNoYW5nZS9tb3ZlLWNoYW5nZSdcblxuLypcbiAqIFB1YmxpYyBBUEkgU3VyZmFjZSBvZiBpbS1ncmlkXG4gKi9cbiJdfQ==

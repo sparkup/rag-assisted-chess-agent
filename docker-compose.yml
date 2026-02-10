@@ -1,0 +1,110 @@
+version: "3.9"
+
+services:
+    backend:
+        build: ./backend
+        container_name: chess-agent-backend
+        ports:
+            - "8000:8000"
+        env_file:
+            - .env
+        volumes:
+            - ./backend:/app
+        command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+        networks:
+            - app-network
+
+    milvus:
+        image: milvusdb/milvus:v2.3.12
+        container_name: chess-agent-milvus
+        command: ["bash", "-c", "sleep 40 && milvus run standalone"]
+        environment:
+            - ETCD_ENDPOINTS=etcd:2379
+            - MINIO_ADDRESS=minio:9000
+            - DATA_NODE_DATA_PATH=/var/lib/milvus
+        ports:
+            - "19530:19530"
+            - "9091:9091"
+        volumes:
+            - chess_agent_milvus_data:/var/lib/milvus
+        depends_on:
+            etcd:
+                condition: service_healthy
+            minio:
+                condition: service_started
+        restart: always
+        networks:
+            - app-network
+
+    etcd:
+        image: gcr.io/etcd-development/etcd:v3.5.5
+        platform: linux/amd64
+        container_name: chess-agent-etcd
+        environment:
+            - ETCD_AUTO_COMPACTION_MODE=revision
+            - ETCD_AUTO_COMPACTION_RETENTION=1000
+            - ETCD_QUOTA_BACKEND_BYTES=4294967296
+            - ETCD_SNAPSHOT_COUNT=50000
+            - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+            - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+        volumes:
+            - chess_agent_etcd_data:/etcd
+        networks:
+            - app-network
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "etcdctl --endpoints=http://localhost:2379 endpoint health || exit 1",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 15
+
+    minio:
+        image: minio/minio:RELEASE.2023-03-24T21-41-23Z
+        container_name: chess-agent-minio
+        command: server /data
+        environment:
+            - MINIO_ACCESS_KEY=minioadmin
+            - MINIO_SECRET_KEY=minioadmin
+        volumes:
+            - chess_agent_minio_data:/data
+        ports:
+            - "9000:9000"
+        networks:
+            - app-network
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile.dev
+        container_name: chess-agent-frontend
+        ports:
+            - "4200:4200"
+        volumes:
+            - ./frontend:/usr/src/app:cached
+            - /usr/src/app/node_modules
+        depends_on:
+            - backend
+        networks:
+            - app-network
+            - public
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=public
+            - traefik.http.routers.chessagent-web-local.rule=Host(`chess-agent.demo.sparkup.local`)
+            - traefik.http.routers.chessagent-web-local.entrypoints=websecure
+            - traefik.http.routers.chessagent-web-local.tls=true
+            - traefik.http.services.chessagent-web-local.loadbalancer.server.port=4200
+
+volumes:
+    chess_agent_milvus_data:
+    chess_agent_etcd_data:
+    chess_agent_minio_data:
+
+networks:
+    app-network:
+        driver: bridge
+    public:
+        external: true

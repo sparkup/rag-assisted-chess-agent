@@ -1,0 +1,1 @@
+{"version":3,"file":"board-state.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/board-state-provider/board-state/board-state.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,uBAAuB,CAAC;AAE9C,qBAAa,UAAU;IAEnB,KAAK,EAAE,KAAK,CAAC;gBAED,KAAK,EAAE,KAAK;CAI3B"}

@@ -1,0 +1,135 @@
+<div class="mb-4">
+    <h2 class="mb-2">Play Chess</h2>
+
+    <p class="text-muted-72 mb-2">
+        Play against Stockfish on the interactive board. You can load a custom
+        position using FEN notation, reset the board at any time, or flip the
+        orientation to analyse from either perspective.
+    </p>
+
+    <p class="text-muted-72 mb-2">
+        Tip: paste a FEN string on the right and click
+        <strong>Load FEN</strong> to jump straight into that position.
+    </p>
+
+    <p class="small fst-italic text-muted-72 mb-0">
+        <strong>Technical note:</strong> this view is powered by the
+        <strong>ngx-chess-board</strong> library (interactive UI) and
+        <strong>chess.js</strong> (FEN parsing and move validation).
+    </p>
+</div>
+
+<hr />
+
+<div class="row g-4 align-items-start mt-1">
+    <!-- Board (left on desktop, top on mobile) -->
+    <div class="col-12 col-lg-6">
+        <div
+            #boardWrapper
+            class="search-panel h-100 d-flex justify-content-center"
+            (pointerup)="clearSelection()"
+        >
+            <div
+                class="chess-board-shell"
+                [style.width.px]="boardSize"
+                [style.height.px]="boardSize"
+            >
+                <div
+                    *ngIf="lastMoveSquares"
+                    class="chess-highlight chess-highlight--from"
+                    [ngStyle]="getSquareStyle(lastMoveSquares.from)"
+                ></div>
+                <div
+                    *ngIf="lastMoveSquares"
+                    class="chess-highlight chess-highlight--to"
+                    [ngStyle]="getSquareStyle(lastMoveSquares.to)"
+                ></div>
+
+                <ngx-chess-board
+                    #board
+                    [size]="boardSize"
+                    [lightTileColor]="'#f1f3f6'"
+                    [darkTileColor]="'#d4d9e2'"
+                    [sourcePointColor]="'#7c5cff'"
+                    [destinationPointColor]="'#22a7f0'"
+                    [legalMovesPointColor]="'#22a7f0'"
+                    [showCoords]="true"
+                    [showLastMove]="true"
+                    [showLegalMoves]="true"
+                    [showActivePiece]="false"
+                    [showPossibleCaptures]="true"
+                    [dragDisabled]="isThinking"
+                    [lightDisabled]="playerColor === 'black'"
+                    [darkDisabled]="playerColor === 'white'"
+                    (moveChange)="onMoveChange($event)"
+                >
+                </ngx-chess-board>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls (right on desktop, bottom on mobile) -->
+    <div class="description-block col-12 col-lg-6">
+        <div class="search-panel h-100">
+            <label for="fenInput" class="form-label fw-semibold mb-2"
+                >FEN position</label
+            >
+            <input
+                id="fenInput"
+                class="form-control"
+                [(ngModel)]="fen"
+                placeholder="Paste a FEN position…"
+            />
+
+            <div class="form-text text-muted-72 mt-2">
+                Examples:
+                <br />
+                <span class="fw-semibold">
+                    8/5k2/3p4/1p1Pp2p/pP2Pp1P/P4P1K/8/8 b - - 99 50
+                </span>
+                <br />
+                <span class="fw-semibold">
+                    4k2r/6r1/8/8/8/8/3R4/R3K3 w Qk - 0 1
+                </span>
+            </div>
+
+            <hr />
+
+            <label for="skillLevel" class="form-label fw-semibold mb-2"
+                >Stockfish difficulty (0-20)</label
+            >
+            <select
+                id="skillLevel"
+                class="form-select"
+                [(ngModel)]="skillLevel"
+            >
+                <option *ngFor="let level of skillLevels" [value]="level">
+                    Level {{ level }}
+                </option>
+            </select>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="d-flex gap-2">
+                    <button
+                        type="button"
+                        class="btn btn-default"
+                        (click)="reset()"
+                    >
+                        Reset
+                    </button>
+                    <button type="button" class="btn btn-dark" (click)="flip()">
+                        Flip
+                    </button>
+                </div>
+
+                <button
+                    type="button"
+                    class="btn btn-primary px-4"
+                    (click)="loadFen()"
+                >
+                    Load FEN
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

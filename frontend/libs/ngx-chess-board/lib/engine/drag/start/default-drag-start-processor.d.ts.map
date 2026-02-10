@@ -1,0 +1,1 @@
+{"version":3,"file":"default-drag-start-processor.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/drag/start/default-drag-start-processor.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,wBAAwB,CAAC;AACtD,OAAO,EAAE,kBAAkB,EAAE,MAAM,wBAAwB,CAAC;AAE5D,qBAAa,yBAA0B,YAAW,kBAAkB;IAEhE,WAAW,CAAC,KAAK,EAAE,YAAY;CAQlC"}

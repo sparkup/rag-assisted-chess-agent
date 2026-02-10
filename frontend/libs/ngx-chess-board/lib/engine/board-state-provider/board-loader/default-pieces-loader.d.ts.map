@@ -1,0 +1,1 @@
+{"version":3,"file":"default-pieces-loader.d.ts","sourceRoot":"","sources":["../../../../../../projects/ngx-chess-board/src/lib/engine/board-state-provider/board-loader/default-pieces-loader.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,uBAAuB,CAAC;AAW9C,qBAAa,mBAAmB;IAE5B,MAAM,CAAC,iBAAiB,CAAC,KAAK,EAAE,KAAK;CA0HxC"}

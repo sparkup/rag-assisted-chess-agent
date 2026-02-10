@@ -1,0 +1,59 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+*.db
+*.sqlite3
+
+# --- Logs ---
+*.log
+logs/
+*.out
+
+# --- Virtual env ---
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+
+# --- VSCode / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Node / Angular ---
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+/data/*
+!/data/.gitkeep
+docker-compose.override.yml
+
+# --- Notebooks / Temp ---
+*.ipynb_checkpoints
+.tmp/
+.cache/
+
+# --- Build artifacts ---
+build/
+__build__/
+coverage/
+
+# --- ANGULAR / NODE ---
+node_modules/
+dist/
+.angular/
+frontend/.angular/
+frontend/dist/

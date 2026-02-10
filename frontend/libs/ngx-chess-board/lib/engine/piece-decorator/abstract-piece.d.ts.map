@@ -1,0 +1,1 @@
+{"version":3,"file":"abstract-piece.d.ts","sourceRoot":"","sources":["../../../../../projects/ngx-chess-board/src/lib/engine/piece-decorator/abstract-piece.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,2BAA2B,CAAC;AAElD,MAAM,WAAW,aAAa;IAE1B,gBAAgB,IAAI,KAAK,EAAE,CAAC;IAE5B,mBAAmB,IAAI,KAAK,EAAE,CAAC;CAElC"}
